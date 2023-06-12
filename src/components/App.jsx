@@ -79,7 +79,9 @@ export class App extends Component {
       <AppContainer>
         <Searchbar onSubmit={this.setQuery} />
         {isLoading ? <Loader /> : <ImageGallery pictures={pictures} />}
-        {!isEmptyArray && !islastPage && <Button onClick={this.setPage} />}
+        {!isEmptyArray && !islastPage && !isLoading && (
+          <Button onClick={this.setPage} />
+        )}
         <ToastContainer autoClose={3000} />
       </AppContainer>
     );
