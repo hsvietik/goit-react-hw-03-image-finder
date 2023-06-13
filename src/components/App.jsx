@@ -5,7 +5,7 @@ import { AppContainer } from './App.styled';
 import { Searchbar } from './Searchbar/Searchbar';
 import { ImageGallery } from './ImageGallery/ImageGallery';
 import { Button } from './Button/Button';
-import { fetchPictures } from './api';
+import { fetchPictures } from '../api';
 import { Loader } from './Loader/Loader';
 
 export class App extends Component {
@@ -54,6 +54,11 @@ export class App extends Component {
             totalHits: response.totalHits,
           };
         });
+
+        window.scrollBy({
+          top: 600,
+          behavior: 'smooth',
+        });
         if (!response.hits.length) {
           return toast.warn(
             `Sorry, there are no images matching your search query. Please try again.`
@@ -78,7 +83,8 @@ export class App extends Component {
     return (
       <AppContainer>
         <Searchbar onSubmit={this.setQuery} />
-        {isLoading ? <Loader /> : <ImageGallery pictures={pictures} />}
+        <ImageGallery pictures={pictures} />
+        {isLoading && <Loader />}
         {!isEmptyArray && !islastPage && !isLoading && (
           <Button onClick={this.setPage} />
         )}
