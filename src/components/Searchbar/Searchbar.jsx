@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
+import { Formik } from 'formik';
+import { ImSearch } from 'react-icons/im';
 import {
   StyledSearchbar,
   StyledForm,
   SearchButton,
   SearchInput,
 } from './Searchbar.styled';
-import { Formik } from 'formik';
-import { ImSearch } from 'react-icons/im';
+import { PixabayLink } from './PixabayLink';
 
 export class Searchbar extends Component {
   handleSubmit = ({ query }, { resetForm }) => {
@@ -17,6 +18,7 @@ export class Searchbar extends Component {
   render() {
     return (
       <StyledSearchbar>
+        <PixabayLink />
         <Formik initialValues={{ query: '' }} onSubmit={this.handleSubmit}>
           <StyledForm>
             <SearchInput
