@@ -54,11 +54,14 @@ export class App extends Component {
             totalHits: response.totalHits,
           };
         });
-
-        window.scrollBy({
-          top: 600,
-          behavior: 'smooth',
-        });
+        if (currentPage > 1) {
+          setTimeout(() => {
+            window.scrollBy({
+              top: 650,
+              behavior: 'smooth',
+            });
+          }, 300);
+        }
         if (!response.hits.length) {
           return toast.warn(
             `Sorry, there are no images matching your search query. Please try again.`
